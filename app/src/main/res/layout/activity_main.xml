@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.zhw.cmcm.MainActivity">
+
+    <com.zhw.cmcm.ColorTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:color_texts="500|WIFI"
+        app:color_arrays="#93E65A|#EC3F22"
+        android:text="You can get 500 credits after connect and share the WIFI"/>
+
+</RelativeLayout>

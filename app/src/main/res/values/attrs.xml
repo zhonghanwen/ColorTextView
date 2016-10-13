@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ColorTextView">
+        <attr name="color_texts" format="string"/>
+        <attr name="color_arrays" format="string"/>
+    </declare-styleable>
+</resources>
