@@ -10,6 +10,9 @@ import android.util.AttributeSet;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ */
 public class ColorTextView extends AppCompatTextView {
 
     private List<String> mColorTexts = new ArrayList<>();
@@ -30,45 +33,57 @@ public class ColorTextView extends AppCompatTextView {
         init(attrs);
     }
 
-    private void init(AttributeSet attrs){
+    private void init(AttributeSet attrs) {
         TypedArray attrsArray = getContext().obtainStyledAttributes(attrs, R.styleable.ColorTextView, 0, 0);
         String colorTexts = attrsArray.getString(R.styleable.ColorTextView_color_texts);
         String colors = attrsArray.getString(R.styleable.ColorTextView_color_arrays);
         attrsArray.recycle();
 
-        if (!TextUtils.isEmpty(colorTexts)){
-            String [] texts = colorTexts.split("\\|");
-            for (int i = 0; i < texts.length; i++) {
-                mColorTexts.add(texts[i]);
-            }
-        }
-
-        if (!TextUtils.isEmpty(colors)){
-            String [] texts = colors.split("\\|");
-            for (int i = 0; i < texts.length; i++) {
-                mColors.add(texts[i]);
-            }
-        }
-        size = mColors.size();
+        initData(colorTexts, colors);
 
         setHtmlText();
     }
 
-    private void setHtmlText(){
-        String text = getText().toString();
-        if(!TextUtils.isEmpty(text)){
-            for (int i = 0; i < size; i++) {
-                text = text.replace(mColorTexts.get(i), color(mColors.get(i), mColorTexts.get(i)));
+    private void initData(String colorTexts, String colors) {
+        try {
+            if (!TextUtils.isEmpty(colorTexts)) {
+                String[] texts = colorTexts.split("\\|");
+                for (int i = 0; i < texts.length; i++) {
+                    mColorTexts.add(texts[i]);
+                }
             }
+
+            if (!TextUtils.isEmpty(colors)) {
+                String[] texts = colors.split("\\|");
+                for (int i = 0; i < texts.length; i++) {
+                    mColors.add(texts[i]);
+                }
+            }
+            size = Math.min(mColors.size(), mColorTexts.size());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        if (!TextUtils.isEmpty(text)){
-            setText(Html.fromHtml(text));
+    }
+
+    private void setHtmlText() {
+        try {
+            String text = getText().toString();
+            if (!TextUtils.isEmpty(text)) {
+                for (int i = 0; i < size; i++) {
+                    text = text.replace(mColorTexts.get(i), color(mColors.get(i), mColorTexts.get(i)));
+                }
+            }
+            if (!TextUtils.isEmpty(text)) {
+                setText(Html.fromHtml(text));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
 
-    public  String color(String colorCode, String str){
-        return "<font color=\"" + colorCode  + "\">" + str + "</font>";
+    public String color(String colorCode, String str) {
+        return "<font color=\"" + colorCode + "\">" + str + "</font>";
     }
 
 
