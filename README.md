@@ -6,6 +6,7 @@ mark some phrase with colors
 
 # Code
 ```xml
+    //xml
     <com.zhw.cmcm.ColorTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,6 +14,14 @@ mark some phrase with colors
         app:color_arrays="#93E65A|#EC3F22"
         android:text="You can get 500 credits after connect and share the WIFI"/>
 ```
+
+```java
+    //java
+    ((ColorTextView)findViewById(R.id.ctv_text))
+                    .findAndSetStrColor("You", "#ff8000")
+                    .findAndSetStrColor("can", "#008888");
+```
+
 # License
 
     Copyright 2016 zhonghanwen

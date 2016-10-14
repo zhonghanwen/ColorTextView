@@ -9,5 +9,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ((ColorTextView)findViewById(R.id.ctv_text))
+                .findAndSetStrColor("You", "#ff8000")
+                .findAndSetStrColor("can", "#008888");
     }
 }

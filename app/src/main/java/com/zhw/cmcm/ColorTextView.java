@@ -18,6 +18,7 @@ public class ColorTextView extends AppCompatTextView {
     private List<String> mColorTexts = new ArrayList<>();
     private List<String> mColors = new ArrayList<>();
     private int size;
+    private String mCurrentText;
 
     public ColorTextView(Context context) {
         super(context);
@@ -60,6 +61,7 @@ public class ColorTextView extends AppCompatTextView {
                 }
             }
             size = Math.min(mColors.size(), mColorTexts.size());
+            mCurrentText = getText().toString();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,18 +69,32 @@ public class ColorTextView extends AppCompatTextView {
 
     private void setHtmlText() {
         try {
-            String text = getText().toString();
-            if (!TextUtils.isEmpty(text)) {
+            if (!TextUtils.isEmpty(mCurrentText)) {
                 for (int i = 0; i < size; i++) {
-                    text = text.replace(mColorTexts.get(i), color(mColors.get(i), mColorTexts.get(i)));
+                    mCurrentText = mCurrentText.replace(mColorTexts.get(i), color(mColors.get(i), mColorTexts.get(i)));
                 }
             }
-            if (!TextUtils.isEmpty(text)) {
-                setText(Html.fromHtml(text));
+            if (!TextUtils.isEmpty(mCurrentText)) {
+                setText(Html.fromHtml(mCurrentText));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    public ColorTextView findAndSetStrColor(String str, String color) {
+        try {
+            if (!TextUtils.isEmpty(mCurrentText)) {
+                mCurrentText = mCurrentText.replaceAll(str, color(color, str));
+            }
+            if (!TextUtils.isEmpty(mCurrentText)) {
+                setText(Html.fromHtml(mCurrentText));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return this;
     }
 
 
