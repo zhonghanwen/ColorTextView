@@ -13,6 +13,7 @@
     tools:context="com.zhw.cmcm.MainActivity">
 
     <com.zhw.cmcm.ColorTextView
+        android:id="@+id/ctv_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:color_texts="500|WIFI"
