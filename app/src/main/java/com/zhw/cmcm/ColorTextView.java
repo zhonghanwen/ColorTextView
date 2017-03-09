@@ -84,6 +84,7 @@ public class ColorTextView extends AppCompatTextView {
 
 
     public ColorTextView findAndSetStrColor(String str, String color) {
+        mCurrentText = getText().toString();
         try {
             if (!TextUtils.isEmpty(mCurrentText)) {
                 mCurrentText = mCurrentText.replaceAll(str, color(color, str));
